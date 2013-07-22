@@ -3,6 +3,9 @@ var fs = require('fs');
 var htmlfile = "index.html"
 
 var app = express.createServer(express.logger());
+app.use(app.router); //use both root and other routes below
+app.use(express.static(__dirname + "/public")); //use static files in ROOT/public
+console.log("Path:" + __dirname);
 
 app.get('/', function(request, response) { 
   var html = fs.readFileSync(htmlfile).toString();
